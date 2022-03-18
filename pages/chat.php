@@ -27,6 +27,6 @@ if (!isset($_SESSION['user'])) {
 
     <div class="bottom">
         <textarea name="message" id="message" cols="30" rows="1"></textarea>
-        <input type="submit" name="message">
+        <input type="submit" name="submit" id="new_message">
     </div>
 </section>

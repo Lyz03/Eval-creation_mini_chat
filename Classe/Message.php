@@ -2,12 +2,14 @@
 
 namespace App\Classe;
 
+use DateTime;
+
 class Message
 {
 
     private string $id;
-    private string $user1;
-    private string $user2;
+    private User $user;
+    private DateTime $dateSent;
     private string $content;
 
     /**
@@ -29,38 +31,38 @@ class Message
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function getUser1(): string
+    public function getUser(): User
     {
-        return $this->user1;
+        return $this->user;
     }
 
     /**
-     * @param string $user1
+     * @param User $user
      * @return Message
      */
-    public function setUser1(string $user1): self
+    public function setUser(User $user): self
     {
-        $this->user1 = $user1;
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * @return string
+     * @return DateTime
      */
-    public function getUser2(): string
+    public function getDateSent(): DateTime
     {
-        return $this->user2;
+        return $this->dateSent;
     }
 
     /**
-     * @param string $user2
+     * @param DateTime $dateSent
      * @return Message
      */
-    public function setUser2(string $user2): self
+    public function setDateSent(DateTime $dateSent): self
     {
-        $this->user2 = $user2;
+        $this->dateSent = $dateSent;
         return $this;
     }
 

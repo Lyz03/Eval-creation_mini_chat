@@ -4,6 +4,7 @@ namespace App\Manager;
 
 use App\DB;
 use App\Classe\Message;
+use DateTime;
 
 class MessageManager
 {
@@ -17,45 +18,35 @@ class MessageManager
      */
     private static function createMessage(array $data, $userManager): Message
     {
+        $format = "Y-m-d H:i:s";
+
         return (new Message())
             ->setId($data['id'])
-            ->setUser1($userManager->getUserById($data['user1']))
-            ->setUser2($userManager->getUserById($data['user2']))
+            ->setUser($userManager->getUserById($data['user_id']))
+            ->setDateSent(DateTime::createFromFormat($format, $data['date_sent']))
             ->setContent($data['content'])
             ;
     }
 
-    public function newMessage($idUser1, $idUser2, $content) {
-        $stmt = DB::getConnection()->prepare("INSERT INTO " . self::TABLE . " (user1_id, user2_id, content)
-            VALUES (:user1, :user2, :content)");
+    /**
+     * add a new message
+     * @param $idUser
+     * @param $content
+     * @return bool
+     */
+    public function newMessage($idUser, $content): bool {
+        $stmt = DB::getConnection()->prepare("INSERT INTO " . self::TABLE . " (user_id, content)
+            VALUES (:user, :content)");
 
-        $stmt->bindParam('user1', $idUser1);
-        $stmt->bindParam('user2', $idUser2);
+        $stmt->bindParam('user', $idUser);
         $stmt->bindParam('content', $content);
 
 
-        $stmt->execute();
-    }
-
-    /**
-     * get all messages between 2 users
-     * @param int $idUser1
-     * @param int $idUser2
-     * @return array
-     */
-    public function getMessages(int $idUser1, int $idUser2): array {
-        $messages = [];
-
-        $query = DB::getConnection()->query("SELECT * FROM " . self::TABLE .
-            "  WHERE (user1_id = $idUser1 OR user1_id = $idUser2) AND (user2_id = $idUser1 OR user2_id = $idUser2) ");
-
-        if ($query && $data = $query->fetchAll()) {
-            $userManager = new UserManager();
-            foreach ($data as $value) {
-                $messages[] = self::createMessage($value, $userManager);
-            }
+        if ($stmt->execute()) {
+            return true;
         }
 
-        return $messages;
+        return false;
     }
+
 }
