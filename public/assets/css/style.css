@@ -1,0 +1,160 @@
+:root {
+    --white: rgb(252, 252, 252);
+    --black: rgb(78, 78, 78);
+    --mainColor: rgb(182, 112, 112);
+    --mainColor2: rgb(149, 85, 85);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/*
+ * Connection
+ */
+form h2 {
+    color: var(--mainColor);
+}
+
+#register, #connection {
+    padding: 1rem;
+    border: 2px solid var(--mainColor2);
+    border-radius: 15px;
+    width: 30rem;
+    max-width: 100%;
+    margin: 2rem auto;
+}
+
+form input:not([type=submit]) {
+    max-width: 90%;
+    font-size: 1rem;
+    display: block;
+    padding: 0.3rem 0.5rem;
+    width: 20rem;
+    margin: 2rem;
+    color: #8d8d8d;
+}
+
+form input:not([type=submit], [type=search]):focus {
+    outline: none;
+}
+
+form input[type=submit] {
+    margin-top: 0.5rem;
+    margin-left: 2rem;
+    padding: 0.3rem 0.5rem 0.4rem 0.5rem;
+    background-color: var(--mainColor);
+    border: none;
+    color: var(--white);
+}
+
+p.createAccount {
+    text-align: center;
+}
+
+span.createAccount {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+span.createAccount:hover {
+    cursor: pointer;
+}
+
+#register {
+    display: none;
+}
+
+/*
+ * Messages
+ */
+.circle {
+    border-radius: 100px;
+    padding: 1rem 1.3rem;
+    margin-right: 1rem;
+    color: var(--white);
+    background-color: var(--mainColor2);
+}
+
+section {
+    border: 1px solid gray;
+    width: 100%;
+}
+
+.top {
+    border-bottom: 1px solid gray;
+    background-color: var(--mainColor);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    color: var(--white);
+}
+
+.messages {
+    min-height: 80vh;
+    max-height: 80vh;
+    overflow: auto;
+}
+
+.messages div {
+    word-break: break-word;
+    padding: 0.6rem 1rem;
+    color: var(--white);
+}
+
+.received > div {
+    display: inline-block;
+    background-color: var(--mainColor);
+    border-radius: 15px 15px 15px 0;
+}
+
+.sent {
+    text-align: right;
+}
+
+.sent > div {
+    display: inline-block;
+    background-color: var(--mainColor2);
+    border-radius: 15px 15px 0 15px;
+}
+
+.bottom {
+    padding: 1rem;
+    border-top: 1px solid gray;
+    background-color: var(--mainColor2);
+}
+
+textarea {
+    resize: none;
+    border: none;
+    background-color: var(--mainColor);
+    color: var(--white);
+    padding: 0.8rem 1.2rem;
+    border-radius: 15px;
+    width: 85%;
+}
+
+input[type=submit] {
+    padding: 0.3rem 0.6rem;
+    color: var(--white);
+    background-color: var(--mainColor);
+    border: none;
+    margin-left: 1rem;
+}
+
+/*
+ * RESPONSIVE
+ */
+@media screen and (max-width: 950px) {
+    input[type=submit] {
+        margin-top: 1rem;
+    }
+}
