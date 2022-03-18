@@ -14,17 +14,38 @@ if(newMessage) {
         xhr.onload = function() {
             if(xhr.status === 404) {
                 alert('Aucun endpoint trouvé !');
-                return;
             }
             else if(xhr.status === 400) {
                 alert('Un paramètre est manquant');
-                return;
             }
-
-            const response = xhr.response;
-            console.log(response);
         }
 
         xhr.send(JSON.stringify(body));
     });
+
 }
+
+function displayMessage() {
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.open('GET', '/../api/get-message.php');
+
+    xhr.onload = function() {
+        if(xhr.status === 404) {
+            alert('Aucun endpoint trouvé !');
+            return;
+        }
+        else if(xhr.status === 400) {
+            alert('Un paramètre est manquant');
+            return;
+        }
+
+        const response = xhr.response;
+        console.log(response);
+    }
+
+    xhr.send();
+}
+
+displayMessage()

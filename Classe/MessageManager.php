@@ -2,6 +2,8 @@
 
 namespace App\Manager;
 
+use App\Classe\User;
+use App\Classe\UserManager;
 use App\DB;
 use App\Classe\Message;
 use DateTime;
@@ -49,4 +51,16 @@ class MessageManager
         return false;
     }
 
+    public function getAll(): array {
+        $query =  DB::getConnection()->query("SELECT * FROM " . self::TABLE);
+        $messages = [];
+
+        if($query) {
+            $userManager = new UserManager();
+            foreach ($query->fetchAll() as $value) {
+                $messages[] = self::createMessage($value, $userManager);
+            }
+        }
+        return $messages;
+    }
 }

@@ -31,18 +31,9 @@ $message->setContent($content);
 $message->setDateSent(new DateTime());
 $message->setUser($_SESSION['user']);
 
-// On tente l'enregistrement.
 $messageManager = new MessageManager();
-if ($messageManager->newMessage($_SESSION['user']->getId(), $content)) {
-    // Si on le souhaite, on peut renvoyer l'article avec son ID
-    // (souvenez vous qu'on lui donne son id après enregistrement)
-    echo json_encode([
-        'content' => $content,
-    ]);
 
-    http_response_code(200);
-    exit;
-}
+$messageManager->newMessage($_SESSION['user']->getId(), $content);
 
 http_response_code(200);
 exit;
