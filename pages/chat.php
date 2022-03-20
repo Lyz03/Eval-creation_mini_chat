@@ -12,17 +12,7 @@ if (!isset($_SESSION['user'])) {
     </div>
 
     <div class="messages">
-        <div class="received">
-            <div>
-                <p>Le message reçu</p>
-            </div>
-        </div>
 
-        <div class="sent">
-            <div>
-                <p>message envoyé</p>
-            </div>
-        </div>
     </div>
 
     <div class="bottom">

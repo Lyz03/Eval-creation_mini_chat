@@ -20,10 +20,17 @@ $messageManager = new MessageManager();
 $array = [];
 
 foreach($messageManager->getAll() as $value) {
+    $sent = false;
+    if ($value->getUser()->getId() === $_SESSION['user']->getId()) {
+        $sent = true;
+    }
+
     $array[] = [
-        $value->getContent(),
-        $value->getDateSent()->format('D H:i:s'),
-        $value->getUser()->getUsername(),
+        'id' => $value->getId(),
+        'content' => $value->getContent(),
+        'dateTime' => $value->getDateSent()->format('D H:i:s'),
+        'username' => $value->getUser()->getUsername(),
+        'sent' => $sent,
     ];
 }
 

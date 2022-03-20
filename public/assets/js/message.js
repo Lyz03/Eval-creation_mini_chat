@@ -1,6 +1,8 @@
 const newMessage = document.querySelector('#new_message');
-
+const messagesContainer = document.querySelector('.messages');
+let lastId = 0;
 if(newMessage) {
+    // add a new message
     newMessage.addEventListener('click', () => {
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
@@ -8,6 +10,8 @@ if(newMessage) {
         const body = {
             content: document.querySelector('#message').value
         };
+
+        document.querySelector('#message').value = '';
 
         xhr.open('post', '/../api/add-message.php');
 
@@ -23,8 +27,11 @@ if(newMessage) {
         xhr.send(JSON.stringify(body));
     });
 
+   window.setInterval(displayMessage, 2000);
+
 }
 
+// get all messages to display them
 function displayMessage() {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
@@ -42,10 +49,43 @@ function displayMessage() {
         }
 
         const response = xhr.response;
-        console.log(response);
+
+        response.forEach(value => {
+
+            if (lastId < value.id) {
+                console.log(lastId)
+                lastId = value.id;
+                //container
+                let div = document.createElement('div');
+
+                if (value.sent)
+                    div.className = 'sent';
+                else
+                    div.className = 'received';
+
+                // username
+                let span = document.createElement('span');
+                span.innerText = value.username;
+
+                // background color
+                let div2 = document.createElement('div');
+
+                // content
+                let p = document.createElement('p');
+                p.innerText = value.content;
+
+                // time
+                let span2 = document.createElement('span');
+                span2.innerText = value.dateTime;
+
+                messagesContainer.appendChild(div);
+                div.appendChild(span);
+                div.appendChild(div2);
+                div2.appendChild(p);
+                div.appendChild(span2);
+            }
+        })
     }
 
     xhr.send();
 }
-
-displayMessage()

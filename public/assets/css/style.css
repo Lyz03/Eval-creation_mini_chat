@@ -110,6 +110,11 @@ section {
     color: var(--white);
 }
 
+span {
+    color: gray;
+    display: block;
+}
+
 .received > div {
     display: inline-block;
     background-color: var(--mainColor);
