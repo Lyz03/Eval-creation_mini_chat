@@ -115,10 +115,6 @@ function connect() {
         $error[] = "l'adresse email doit faire entre 8 et 150 caractères";
     }
 
-    if (strlen($_POST['password']) < 8 || strlen($_POST['password']) >= 255) {
-        $error[] = "le mot de passe doit faire entre 8 caractères";
-    }
-
     $userManager  = new UserManager();
     $user = $userManager->userExist($mail);
 

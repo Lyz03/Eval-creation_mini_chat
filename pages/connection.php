@@ -9,7 +9,15 @@
 </form>
 
 <?php
-var_dump($_SESSION['error']);
+if (isset($_SESSION['error'])) {
+    foreach ($_SESSION['error'] as $value) {
+    ?>
+        <p><?= $value ?></p>
+    <?php
+    }
+    unset($_SESSION['error']);
+}
+
 if (!isset($_SESSION['user'])) {
     echo '<p class="createAccount">Vous ne possédez pas de compte créer en un <span class="createAccount">ici</span></p>';
 }

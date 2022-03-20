@@ -89,6 +89,12 @@ section {
     width: 100%;
 }
 
+a {
+    color: var(--white);
+    display: inline-block;
+    margin-left: 1rem;
+}
+
 .top {
     border-bottom: 1px solid gray;
     background-color: var(--mainColor);

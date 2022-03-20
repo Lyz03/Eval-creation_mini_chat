@@ -53,7 +53,6 @@ function displayMessage() {
         response.forEach(value => {
 
             if (lastId < value.id) {
-                console.log(lastId)
                 lastId = value.id;
                 //container
                 let div = document.createElement('div');
