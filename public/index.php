@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -12,10 +15,7 @@
 
 <?php
 
-session_start();
-
 $param = $_GET['p'] ?? null;
-
 
 switch ($param) {
     case 'chat':
