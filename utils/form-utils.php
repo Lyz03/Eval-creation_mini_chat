@@ -92,7 +92,7 @@ function register() {
         header('Location: /index.php?p=chat');
 
     } else {
-        $_SESSION['error'] = ["Les mot de passe ne corespondent pas"];
+        $_SESSION['error'] = ["Les mots de passe ne corespondent pas"];
         header('Location: /index.php');
         exit();
     }
